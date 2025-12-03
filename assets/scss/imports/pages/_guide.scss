@@ -1,0 +1,49 @@
+/* -------------------------------------------------------------------------- */
+/*                                 guide page                                 */
+/* -------------------------------------------------------------------------- */
+
+.guidepage {
+  // ===== guide =====
+  .guide {
+    &_content {
+      dl {
+        font-family: var(--noto-fonts);
+        font-size: 1.4rem;
+        line-height: 1.72;
+        letter-spacing: 0.28px;
+
+        margin-top: 40px;
+        display: grid;
+        align-items: flex-start;
+        grid-template-columns: 1fr 71.429%;
+        gap: 30px;
+
+        &:first-child {
+          margin-top: 55px;
+        }
+
+        dd {
+          p {
+            font-weight: 400;
+          }
+        }
+      }
+    }
+
+    @include maxW {
+      &_content {
+        dl {
+          font-size: 1.2rem;
+          line-height: 1.67;
+          margin-top: 33px;
+          grid-template-columns: 1fr;
+          gap: 18px;
+
+          &:first-child {
+            margin-top: 45px;
+          }
+        }
+      }
+    }
+  }
+}

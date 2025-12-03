@@ -1,0 +1,76 @@
+/* -------------------------------------------------------------------------- */
+/*                                 policy page                                */
+/* -------------------------------------------------------------------------- */
+
+.policypage {
+  // ===== policy =====
+  .policy {
+    &_content {
+      margin-top: 45px;
+
+      &:nth-of-type(1) {
+        margin-top: 60px;
+      }
+
+      h2,
+      p,
+      span {
+        font-family: var(--noto-fonts);
+        font-size: 1.4rem;
+        font-weight: 400;
+        line-height: 1.72;
+        letter-spacing: 0.28px;
+      }
+
+      h2 {
+        font-weight: 500;
+        margin-bottom: 30px;
+      }
+
+      ul {
+        margin-top: 30px;
+
+        li {
+          padding-left: 29px;
+          text-indent: -29px;
+
+          span,
+          p,
+          a {
+            display: inline;
+          }
+        }
+      }
+    }
+
+    @include maxW {
+      &_content {
+        margin-top: 35px;
+
+        &:nth-of-type(1) {
+          margin-top: 60px;
+        }
+
+        h2,
+        p,
+        span {
+          font-size: 1.2rem;
+          line-height: 1.67;
+        }
+
+        h2 {
+          margin-bottom: 20px;
+        }
+
+        ul {
+          margin-top: 20px;
+
+          li {
+            padding-left: 27px;
+            text-indent: -27px;
+          }
+        }
+      }
+    }
+  }
+}

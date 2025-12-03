@@ -1,0 +1,32 @@
+/* Footer
+------------------------------------------------------------*/
+
+.c-footer {
+  &_container {
+    position: relative;
+    padding: 180px 45px 45px;
+    text-align: center;
+
+    &.--home {
+      text-align: right;
+
+      & > * {
+        display: none;
+      }
+    }
+  }
+
+  &_copyright {
+    font-size: 1.4rem;
+  }
+
+  @include maxW {
+    &_container {
+      padding: 80px 20px 20px;
+    }
+
+    &_copyright {
+      font-size: 1.2rem;
+    }
+  }
+}

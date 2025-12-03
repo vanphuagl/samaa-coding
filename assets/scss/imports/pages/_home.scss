@@ -1,0 +1,62 @@
+/* -------------------------------------------------------------------------- */
+/*                                  home page                                 */
+/* -------------------------------------------------------------------------- */
+
+.homepage {
+  // ===== product =====
+  .product {
+    &_list {
+      width: 72.917vw;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 200px 0;
+    }
+
+    &_items {
+      // selector items 1-2-3
+      &:nth-child(-n + 3) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        pointer-events: none;
+      }
+
+      // selector items 4-5-6
+      &:nth-child(n + 4):nth-child(-n + 6) {
+        margin-top: -200px;
+      }
+    }
+
+    @include maxW {
+      &_list {
+        width: 100%;
+        padding: 0 32px 100px;
+        grid-template-columns: 1fr;
+        gap: 150px 0;
+      }
+
+      &_items {
+        &:nth-child(-n + 3),
+        &:nth-child(n + 4):nth-child(-n + 6) {
+          margin-top: initial;
+          height: auto;
+          display: block;
+        }
+
+        &:nth-child(1) {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: var(--app-height);
+          pointer-events: none;
+        }
+
+        &:nth-child(2) {
+          margin-top: -150px;
+        }
+      }
+    }
+  }
+}
