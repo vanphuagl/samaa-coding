@@ -19,6 +19,8 @@ const init = () => {
   appHeight();
   // # init menu
   initMenu();
+  // # init product swipers
+  initProductSwipers();
   // # lazy load
   const ll = new LazyLoad({
     threshold: 100,
@@ -174,9 +176,6 @@ const setActiveBullet = (swiper, realSlidesCount) => {
     );
   });
 };
-
-// init product swipers
-initProductSwipers();
 
 // ### ===== DOMCONTENTLOADED ===== ###
 window.addEventListener("pageshow", () => {
