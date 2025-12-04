@@ -124,6 +124,63 @@ const initMenu = () => {
   });
 };
 
+// ===== products =====
+const initProductSwipers = () => {
+  const containers = document.querySelectorAll("[data-product-swiper]");
+  if (!containers.length) return;
+
+  const swipers = [];
+
+  containers.forEach((container) => {
+    const wrapper = container.querySelector(".swiper-wrapper");
+    const slides = wrapper.querySelectorAll(".swiper-slide");
+
+    // init swiper
+    const swiper = new Swiper(container, {
+      loop: true,
+      speed: 200,
+      effect: "fade",
+      slidesPerView: 1,
+      allowTouchMove: true,
+      pagination: {
+        el: container.querySelector(".swiper-pagination"),
+        clickable: true,
+        renderBullet: (index, className) => {
+          if (slides >= slides.length) return "";
+          return `<span class="${className}">${index + 1}</span>`;
+        },
+      },
+      breakpoints: {
+        1025: {
+          allowTouchMove: false,
+        },
+      },
+      on: {
+        slideChange: (swiper) => {
+          setActiveBullet(swiper, slides.length);
+        },
+      },
+    });
+
+    // push swiper
+    swipers.push(swiper);
+  });
+
+  return swipers;
+};
+
+const setActiveBullet = (swiper, realSlidesCount) => {
+  const bullets = swiper.pagination.bullets;
+  bullets.forEach((bullet, idx) => {
+    bullet.classList.toggle(
+      swiper.params.pagination.bulletActiveClass,
+      idx === swiper.realIndex % realSlidesCount
+    );
+  });
+};
+
+initProductSwipers();
+
 // ### ===== DOMCONTENTLOADED ===== ###
 window.addEventListener("pageshow", () => {
   document.body.classList.remove("fadeout");

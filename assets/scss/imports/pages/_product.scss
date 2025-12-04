@@ -15,8 +15,111 @@
       margin: 0 auto;
 
       &_wrap {
+        width: 100%;
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 45% 1fr;
+        gap: min(10vw, 100px);
+      }
+
+      &_sticky {
+        position: sticky;
+        top: 200px;
+      }
+    }
+
+    &_swiper {
+      position: relative;
+
+      &_slide {
+        .c-picture {
+          img {
+            border-radius: 10px;
+          }
+        }
+      }
+
+      &_pagination {
+        margin-top: 30px;
+        position: initial;
+        display: flex;
+        gap: 10px;
+
+        span {
+          &.swiper-pagination-bullet {
+            width: auto;
+            height: auto;
+            background: none;
+            margin: 0;
+            opacity: 0.5;
+
+            font-family: var(--swiss-fonts);
+            font-size: 1.6rem;
+            font-weight: 500;
+            line-height: 1.5;
+          }
+
+          &.swiper-pagination-bullet-active {
+            opacity: 1;
+          }
+        }
+      }
+    }
+
+    &_header {
+      h2 {
+        font-family: var(--swiss-fonts);
+        font-size: 2.4rem;
+        font-weight: 500;
+        line-height: 1.46;
+        letter-spacing: 1.2px;
+      }
+
+      p {
+        margin-top: 15px;
+        font-size: 1.8rem;
+      }
+    }
+
+    &_meta {
+      margin-top: 35px;
+
+      button[type="submit"] {
+        width: 202px;
+        height: 50px;
+        background: var(--main-text-cl);
+        color: #fcfaf1;
+        border-radius: 10px;
+
+        font-family: var(--main-fonts);
+        font-size: 1.6rem;
+        font-weight: 500;
+        letter-spacing: 0.7px;
+      }
+    }
+
+    &_info {
+      margin-top: 80px;
+
+      h3 {
+        font-family: var(--swiss-fonts);
+        font-size: 1.8rem;
+        font-weight: 500;
+        line-height: 1.6;
+        letter-spacing: 1px;
+      }
+
+      &_content,
+      &_guide {
+        margin-top: 35px;
+        font-family: var(--noto-fonts);
+        font-size: 1.4rem;
+        font-weight: 400;
+        line-height: 1.86;
+        letter-spacing: 0.28px;
+      }
+
+      &_guide {
+        margin-top: 80px;
       }
     }
 
