@@ -7,6 +7,10 @@
   .product {
     &_container {
       padding: 200px 0 0;
+
+      @include maxW {
+        padding: 0;
+      }
     }
 
     &_detail {
@@ -25,10 +29,29 @@
         position: sticky;
         top: 200px;
       }
+
+      @include maxW {
+        width: 100%;
+
+        &_wrap {
+          display: block;
+        }
+
+        &_sticky {
+          position: initial;
+        }
+
+        &_r {
+          margin: 80px auto 0;
+          padding: 0 60px;
+        }
+      }
     }
 
     &_swiper {
       position: relative;
+      width: 100%;
+      height: 100%;
 
       &_slide {
         .c-picture {
@@ -63,6 +86,43 @@
           }
         }
       }
+
+      @include maxW {
+        height: var(--app-height);
+
+        &_slide {
+          .c-picture {
+            height: 100%;
+            padding-bottom: var(--app-height);
+
+            img {
+              width: auto;
+              height: auto;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              border-radius: 0;
+            }
+          }
+        }
+
+        &_pagination {
+          margin: initial;
+          justify-content: center;
+          position: absolute;
+          top: auto;
+          left: 0;
+          right: auto;
+          bottom: 20px;
+          z-index: 1;
+
+          span {
+            &.swiper-pagination-bullet {
+              font-size: 1.4rem;
+            }
+          }
+        }
+      }
     }
 
     &_header {
@@ -78,13 +138,27 @@
         margin-top: 15px;
         font-size: 1.8rem;
       }
+
+      @include maxW {
+        text-align: center;
+
+        h2 {
+          font-size: 2rem;
+        }
+
+        p {
+          margin-top: 12px;
+          font-size: 1.4rem;
+        }
+      }
     }
 
     &_meta {
-      margin-top: 35px;
+      width: 202px;
+      margin: 35px 0 0;
 
       button[type="submit"] {
-        width: 202px;
+        width: 100%;
         height: 50px;
         background: var(--main-text-cl);
         color: #fcfaf1;
@@ -94,6 +168,16 @@
         font-size: 1.6rem;
         font-weight: 500;
         letter-spacing: 0.7px;
+      }
+
+      @include maxW {
+        width: 172px;
+        margin: 45px auto 0;
+
+        button[type="submit"] {
+          font-size: 1.4rem;
+          line-height: 0.5;
+        }
       }
     }
 
@@ -120,6 +204,26 @@
 
       &_guide {
         margin-top: 80px;
+      }
+
+      @include maxW {
+        margin-top: 100px;
+
+        h3 {
+          text-align: center;
+          font-size: 1.5rem;
+        }
+
+        &_content,
+        &_guide {
+          font-size: 1.2rem;
+          line-height: 1.83;
+          letter-spacing: 0.24px;
+        }
+
+        &_guide {
+          margin-top: 35px;
+        }
       }
     }
 

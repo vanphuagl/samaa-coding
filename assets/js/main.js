@@ -141,18 +141,13 @@ const initProductSwipers = () => {
       speed: 200,
       effect: "fade",
       slidesPerView: 1,
-      allowTouchMove: true,
+      allowTouchMove: false,
       pagination: {
         el: container.querySelector(".swiper-pagination"),
         clickable: true,
         renderBullet: (index, className) => {
           if (slides >= slides.length) return "";
           return `<span class="${className}">${index + 1}</span>`;
-        },
-      },
-      breakpoints: {
-        1025: {
-          allowTouchMove: false,
         },
       },
       on: {
@@ -169,6 +164,7 @@ const initProductSwipers = () => {
   return swipers;
 };
 
+// # active bullet when slide change
 const setActiveBullet = (swiper, realSlidesCount) => {
   const bullets = swiper.pagination.bullets;
   bullets.forEach((bullet, idx) => {
@@ -179,6 +175,7 @@ const setActiveBullet = (swiper, realSlidesCount) => {
   });
 };
 
+// init product swipers
 initProductSwipers();
 
 // ### ===== DOMCONTENTLOADED ===== ###
