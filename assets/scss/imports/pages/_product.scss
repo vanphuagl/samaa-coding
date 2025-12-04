@@ -5,5 +5,55 @@
 .productpage {
   // ===== product =====
   .product {
+    &_container {
+      padding: 200px 0 0;
+    }
+
+    &_detail {
+      position: relative;
+      width: 69.444vw;
+      margin: 0 auto;
+
+      &_wrap {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    &_other {
+      position: relative;
+      width: 77.083vw;
+      margin: 150px auto 0;
+
+      h3 {
+        font-family: var(--swiss-fonts);
+        font-size: 2.4rem;
+        font-weight: 500;
+        letter-spacing: 1px;
+        text-align: center;
+      }
+
+      &_list {
+        margin-top: 80px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 60px 30px;
+      }
+
+      @include maxW {
+        width: 100%;
+        margin: 100px auto 0;
+        padding: 0 45px;
+
+        h3 {
+          font-size: 2rem;
+        }
+
+        &_list {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 35px 0;
+        }
+      }
+    }
   }
 }

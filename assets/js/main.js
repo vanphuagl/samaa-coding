@@ -28,15 +28,8 @@ const init = () => {
 
 // ===== lenis =====
 const lenis = new Lenis({
-  duration: 1.0,
-  easing: (t) => Math.min(1, 1.001 - Math.pow(1 - t, 2.5)),
-  smooth: true,
-  mouseMultiplier: 1.0,
-  smoothTouch: true,
-  touchMultiplier: 1.5,
-  infinite: false,
-  direction: "vertical",
-  gestureDirection: "vertical",
+  lerp: 0.05,
+  smoothWheel: true,
 });
 const raf = (t) => {
   lenis.raf(t);
