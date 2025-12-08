@@ -25,6 +25,10 @@
       grid-template-columns: repeat(2, 1fr);
       align-items: center;
       gap: min(6.944vw, 100px);
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
     }
 
     &_left {
