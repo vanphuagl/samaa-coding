@@ -9,8 +9,10 @@
 
     &.--home {
       text-align: right;
+    }
 
-      & > * {
+    @include maxW {
+      &.--home > * {
         display: none;
       }
     }

@@ -96,8 +96,8 @@
             padding-bottom: var(--app-height);
 
             img {
-              width: auto;
-              height: auto;
+              width: 100%;
+              height: 100%;
               top: 50%;
               left: 50%;
               transform: translate(-50%, -50%);
@@ -158,16 +158,30 @@
       margin: 35px 0 0;
 
       button[type="submit"] {
+        position: relative;
         width: 100%;
         height: 50px;
         background: var(--main-text-cl);
-        color: #fcfaf1;
+        color: transparent;
         border-radius: 10px;
 
         font-family: var(--main-fonts);
         font-size: 1.6rem;
         font-weight: 500;
         letter-spacing: 0.7px;
+      }
+
+      button.purchaseButton__btn--addToCart {
+        &:after {
+          content: "ADD TO CART";
+          color: #fcfaf1;
+          position: absolute;
+          inset: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transform: translateY(1px);
+        }
       }
 
       @include maxW {

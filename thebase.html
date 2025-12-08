@@ -1,37 +1,61 @@
+{block:NotLoadItemsPage}
 <!DOCTYPE html>
 <html lang="ja">
 
 <head>
-    <!-- @meta -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="title" content="">
-    <meta name="description" content="">
-    <meta name="keywords"
-        content="webgl, branding design, development, css, html, react js, scss, gsap, coding, ux/ui design, front-end, web design, web development, phu nguyen, hi991016, creative design, creative dev, art direction, agency, creativ, studio, ux design, storytelling, javascript, animated,typographic, jQuery, responsive">
+    <meta charset="utf-8">
+    <meta name="copyright" content="BASE">
+    <meta name="viewport"
+        content="viewport-fit=cover, width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <!-- @meta facebook -->
-    <meta property="og:locale" content="en">
-    <meta property="og:type" content="article">
-    <meta property="og:site_name" content="">
-    <meta property="og:title" content="">
-    <meta property="og:description" content="">
-    <meta property="og:image" content="">
-    <meta property="og:url" content="">
+    {FaviconTag}
+    {CanonicalTag}
 
-    <!-- @meta twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:site" content="">
-    <meta property="twitter:title" content="">
-    <meta property="twitter:description" content="">
-    <meta property="twitter:image" content="">
+    <!-- @pagination prev/next links (seo) -->
+    {block:IndexPage}
+    {HeadLinkNextPrevTag}
+    {/block:IndexPage}
 
-    <link rel="canonical" href="">
-    <link rel="icon" href="/favicon.ico">
+    <!-- @og:meta (when not item page) -->
+    {block:NotItemPage}
+    {MetaShopInfoTag}
+    {/block:NotItemPage}
+
+    <!-- @meta tags (when item page) -->
+    {block:ItemPage}
+    {MetaItemInfoTag}
+    {/block:ItemPage}
+
+    <!-- @google analytics -->
+    {GoogleAnalyticsTag}
+
+    <!-- @app search -->
+    {block:AppsSearch}
+    <link rel="stylesheet" type="text/css" href="{BASEURL}/search/css/shopTemplate/search.css?{UpdateTime}">
+    {/block:AppsSearch}
+
+    <!-- @app blog -->
+    {block:AppsBlog}
+    <link href="{BlogFeedPageURL}" rel="alternate" type="application/rss+xml" title="Blog | {ShopName}">
+    {/block:AppsBlog}
+
+    <!-- @app items label -->
+    {block:AppsItemLabel}
+    <link rel="stylesheet" type="text/css" href="{BASEURL}/item_label/css/ShopTemplate/style.css?{UpdateTime}">
+    <script type="text/javascript" src="{BASEURL}/item_label/js/ShopTemplate/labelpostion.js?{UpdateTime}"></script>
+    {/block:AppsItemLabel}
+
+    <!-- @thebase js -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script
+        src="https://cdn.jsdelivr.net/gh/jimyi/jquery_bottom@1b7e2204c9193647884581804011ceb5d1d95aac/jquery.bottom-1.0.min.js"></script>
+    <script src="{BASEURL}/js/change_status.js?{UpdateTime}"></script>
+
+    <!-- @thebase css -->
+    {BackgroundTag}
 
     <!-- @master css -->
-    <link rel="stylesheet" href="/assets/css/style.min.css?ver=1.0">
+    <link rel="stylesheet" href="https://basefile.akamaized.net/myagl-base-shop/6932a7aa6899f/style.min.css?{UpdateTime}">
 
     <!-- @adobe fonts -->
     <link rel="stylesheet" href="https://use.typekit.net/lzo7mzq.css">
@@ -43,16 +67,33 @@
         href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@500&family=Noto+Sans+JP:wght@400;500&family=Overpass+Mono:wght@500&display=swap"
         rel="stylesheet">
 
-    <title>PRIVACY POLICY ｜ SAMAA</title>
+    <title>{PageTitle}</title>
 </head>
 
 <body class="fadeout">
+    <!-- @hidden -->
+    <div hidden>{BASEMenuTag}</div>
+    {block:Hidden}
+    {LogoTag}
+    {ItemAttentionTag}
+    {IllegalReportTag}
+    {ContactPageURL}
+    {PageContents}
+    {/block:Hidden}
+    <!-- @hidden -->
+
     <!-- @header -->
     <header class="c-header">
         <div class="c-header_container">
             <div class="c-header_top">
+                {block:IndexPage}
                 <h1>
-                    <a href="/" class="c-header_heading">
+                    <a href="{IndexPageURL}" class="v1">SAMAA_ ONLINE STORE</a>
+                </h1>
+                {/block:IndexPage}
+                {block:NotIndexPage}
+                <h1>
+                    <a href="{IndexPageURL}" class="c-header_heading">
                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="180"
                             height="30.511" viewBox="0 0 180 30.511">
                             <defs>
@@ -100,6 +141,7 @@
                         <p>ONLINE STORE</p>
                     </a>
                 </h1>
+                {/block:NotIndexPage}
             </div>
             <div class="c-header_right">
                 <p>さまあ</p>
@@ -107,20 +149,74 @@
             </div>
             <div class="c-header_left">
                 <ul class="pc-only">
-                    <li><a href="/">PRODUCT</a></li>
-                    <li><a href="/information/">INFORMATION</a></li>
-                    <li><a href="/guide/">GUIDE</a></li>
-                    <li class="--active"><a href="/policy/">POLICY</a></li>
+                    <li class="
+                        {block:IndexPage}--active{/block:IndexPage} 
+                        {block:ItemPage}--active{/block:ItemPage}
+                        ">
+                        <a href="{IndexPageURL}">PRODUCT</a>
+                    </li>
+                    <li class="{block:AboutPage}--active{/block:AboutPage}"><a href="{AboutPageURL}">INFORMATION</a>
+                    </li>
+                    <li class="{block:LawPage}--active{/block:LawPage}"><a href="{LawPageURL}">GUIDE</a></li>
+                    <li class="{block:PrivacyPage}--active{/block:PrivacyPage}"><a href="{PrivacyPageURL}">POLICY</a>
+                    </li>
                 </ul>
                 <ul>
                     <li class="sp-only" data-menu-toggle>MENU</li>
-                    <li><a href="#" data-menu-cart>CART <span>0</span></a></li>
+                    <li><a href="{AddToCartURL}">CART <span class="cart-qty">0</span></a></li>
                 </ul>
             </div>
+            {block:IndexPage}
+            <div class="c-header_bottom">
+                <svg id="logo-header-bottom" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink" width="420" height="71.193" viewBox="0 0 420 71.193">
+                    <defs>
+                        <clipPath id="clip-path-header-bottom">
+                            <rect id="Rectangle_1" data-name="Rectangle 1" width="420" height="71.193" fill="none" />
+                        </clipPath>
+                    </defs>
+                    <g id="Group_1" data-name="Group 1" clip-path="url(#clip-path-header-bottom)">
+                        <path id="Path_1" data-name="Path 1"
+                            d="M439.615,111.9h12.671a4.758,4.758,0,0,0,4.469-6.39L450.38,88.053a4.758,4.758,0,0,0-8.945.018l-6.3,17.453a4.758,4.758,0,0,0,4.475,6.373"
+                            transform="translate(-334.982 -65.422)" fill="#e03c31" />
+                        <path id="Path_2" data-name="Path 2"
+                            d="M396.835,241.375l-2.765,7.665a4.234,4.234,0,0,0,3.983,5.671h32.689a4.234,4.234,0,0,0,3.977-5.687l-2.8-7.667a4.757,4.757,0,0,0-4.469-3.125H401.311a4.758,4.758,0,0,0-4.475,3.143"
+                            transform="translate(-303.369 -183.518)" fill="#e03c31" />
+                        <path id="Path_3" data-name="Path 3"
+                            d="M98.226,34.358A15.8,15.8,0,0,0,88.2,31.182q-6.552,0-9.679,2.878a9.659,9.659,0,0,0-3.127,7.446,9.106,9.106,0,0,0,2.134,6.4,13.606,13.606,0,0,0,5.709,3.574q3.573,1.244,7.843,2.335A61.458,61.458,0,0,1,97.643,55.9a4.121,4.121,0,0,0,5.546-3.866V44.077a9.3,9.3,0,0,0-.23-2.076,13.062,13.062,0,0,0-4.733-7.642"
+                            transform="translate(-58.078 -24.021)" fill="#e03c31" />
+                        <path id="Path_4" data-name="Path 4"
+                            d="M61.124,179.061a13.45,13.45,0,0,0,5.559,4.169,19.107,19.107,0,0,0,7.347,1.39q6.452,0,10.225-2.581t3.772-8.339a9.929,9.929,0,0,0-2.085-6.751,14.071,14.071,0,0,0-5.808-3.772,77.185,77.185,0,0,0-8.587-2.581,51.4,51.4,0,0,1-6.781-2.4,4.759,4.759,0,0,0-6.621,4.376v7.347a14.971,14.971,0,0,0,1.844,7.458,13.921,13.921,0,0,0,1.135,1.686"
+                            transform="translate(-44.792 -121.568)" fill="#e03c31" />
+                        <path id="Path_5" data-name="Path 5"
+                            d="M797.549,141.964a4.758,4.758,0,0,0-9.161,1.8v29.747a4.758,4.758,0,0,0,4.758,4.758h12.2a4.758,4.758,0,0,0,4.4-6.563Z"
+                            transform="translate(-607.323 -107.08)" fill="#e03c31" />
+                        <path id="Path_6" data-name="Path 6"
+                            d="M1300.661,111.9h12.671a4.758,4.758,0,0,0,4.469-6.39l-6.375-17.453a4.758,4.758,0,0,0-8.945.018l-6.3,17.453a4.758,4.758,0,0,0,4.476,6.373"
+                            transform="translate(-998.275 -65.422)" fill="#e03c31" />
+                        <path id="Path_7" data-name="Path 7"
+                            d="M1257.882,241.375l-2.765,7.665a4.234,4.234,0,0,0,3.983,5.671h32.689a4.234,4.234,0,0,0,3.977-5.687l-2.8-7.667a4.759,4.759,0,0,0-4.469-3.125h-26.139a4.759,4.759,0,0,0-4.476,3.143"
+                            transform="translate(-966.664 -183.518)" fill="#e03c31" />
+                        <path id="Path_8" data-name="Path 8"
+                            d="M1652.528,241.375l-2.765,7.665a4.234,4.234,0,0,0,3.983,5.671h32.689a4.234,4.234,0,0,0,3.977-5.687l-2.8-7.667a4.758,4.758,0,0,0-4.469-3.125H1657a4.757,4.757,0,0,0-4.475,3.143"
+                            transform="translate(-1270.673 -183.518)" fill="#e03c31" />
+                        <path id="Path_9" data-name="Path 9"
+                            d="M958.348,141.964a4.758,4.758,0,0,1,9.161,1.8v29.747a4.758,4.758,0,0,1-4.758,4.758h-12.2a4.758,4.758,0,0,1-4.4-6.563Z"
+                            transform="translate(-728.575 -107.08)" fill="#e03c31" />
+                        <path id="Path_10" data-name="Path 10"
+                            d="M862.129,0h-30.46a4.758,4.758,0,0,0-4.4,6.577l15.3,36.958a4.661,4.661,0,0,0,8.658,0l15.3-36.958A4.758,4.758,0,0,0,862.129,0"
+                            transform="translate(-636.994)" fill="#e03c31" />
+                        <path id="Path_11" data-name="Path 11"
+                            d="M1695.568,111.9h12.671a4.758,4.758,0,0,0,4.469-6.39l-6.375-17.453a4.758,4.758,0,0,0-8.945.018l-6.3,17.453a4.758,4.758,0,0,0,4.476,6.373"
+                            transform="translate(-1302.486 -65.422)" fill="#e03c31" />
+                    </g>
+                </svg>
+            </div>
+            {/block:IndexPage}
         </div>
         <div class="c-header_menu sp-only" data-menu>
             <div class="c-header_menu_top">
-                <a href="/" class="c-header_heading">
+                <a href="{IndexPageURL}" class="c-header_heading">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="180"
                         height="30.511" viewBox="0 0 180 30.511">
                         <defs>
@@ -169,10 +265,10 @@
                 </a>
             </div>
             <ul data-menu-link>
-                <li><a href="/">PRODUCT</a></li>
-                <li><a href="/information/">INFORMATION</a></li>
-                <li><a href="/guide/">GUIDE</a></li>
-                <li><a href="/policy/">POLICY</a></li>
+                <li><a href="{IndexPageURL}">PRODUCT</a></li>
+                <li><a href="{AboutPageURL}">INFORMATION</a></li>
+                <li><a href="{LawPageURL}">GUIDE</a></li>
+                <li><a href="{PrivacyPageURL}">POLICY</a></li>
             </ul>
             <div class="c-header_menu_bottom">
                 <p>©︎ SAMAA_</p>
@@ -182,6 +278,342 @@
     <!-- @@header -->
 
     <!-- @main -->
+    <!-- ----------------------------------------------------------------------- -->
+    <!--                                page home                                -->
+    <!-- ----------------------------------------------------------------------- -->
+    {block:IndexPage}
+    <span id="max_page" style="display: none;">{MaxPageNumber}</span>
+    <span id="next_page" style="display: none;">{NextPageNumber}</span>
+
+    <main class="homepage">
+        {block:NotShopPublic}
+        <div class="c-message">
+            <p>coming soon!</p>
+        </div>
+        {/block:NotShopPublic}
+
+        {block:ShopPublic}
+        <!-- product// -->
+        <section class="product">
+            <div class="product_container">
+                <div class="product_list" id="mainContent">
+                    {block:Items}
+                    <div class="product_items">
+                        <a href="{ItemPageURL}" class="c-card">
+                            <picture class="c-picture">
+                                <img class="lazy"
+                                    data-src="{block:ItemImage1}{ItemImage1URL-origin}{/block:ItemImage1}{block:NoItemImage1}{ItemNoImageURL}{/block:NoItemImage1}"
+                                    alt="{ItemTitle}" draggable="false" width="350" height="350">
+                            </picture>
+                            {block:NoItemStock}
+                            <div class="product_label">
+                                <p>sold out</p>
+                            </div>
+                            {/block:NoItemStock}
+                        </a>
+                    </div>
+                    {/block:Items}
+
+                    {block:NoItems}
+                    <div class="c-message">
+                        <p>Sorry, no products found!</p>
+                    </div>
+                    {/block:NoItems}
+                </div>
+                <div id="loading" style="display: none;text-align: center;">LOADING</div>
+            </div>
+        </section>
+        <!-- //product -->
+        {/block:ShopPublic}
+    </main>
+
+    <script type="text/javascript">
+        var process_flg = false;
+        var end_flg = false;
+        $(window).bottom({ proximity: 0.05 });
+        $(window).on('bottom', function () {
+            if (process_flg == false && end_flg == false) {
+                var max_page = $("#max_page").text();
+                var next_page = $('#next_page').text();
+                if (eval(max_page) >= eval(next_page)) {
+                    $.ajax({
+                        url: "{LoadItemsPageURL}" + next_page + "{LoadItemsPageURLParams}",
+                        dataType: 'html',
+                        beforeSend: function () {
+                            process_flg = true;
+                            $('#loading').css('display', 'block');
+                        },
+                        success: function (data) {
+                            $('#mainContent').append(data);
+                            next_page = eval(next_page) + 1;
+                            $('#next_page').text(next_page);
+
+                            // update lazyload
+                            setTimeout(() => {
+                                window.lazyLoadInstance.update();
+                            }, 1000);
+                        },
+                        complete: function () {
+                            process_flg = false;
+                            $('#loading').css('display', 'none');
+                        }
+                    });
+                } else {
+                    end_flg = true;
+                }
+            }
+        });
+    </script>
+    {/block:IndexPage}
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!--                               page items                                -->
+    <!-- ----------------------------------------------------------------------- -->
+    {block:ItemPage}
+    <main class="productpage">
+        <!-- product// -->
+        <section class="product">
+            <div class="product_container">
+                <div class="product_detail">
+                    <div class="product_detail_wrap">
+                        <div class="product_detail_l">
+                            <div class="product_detail_sticky">
+                                <div class="product_swiper" data-product-swiper>
+                                    <div class="swiper-wrapper">
+                                        <div class="product_swiper_slide swiper-slide">
+                                            <picture class="c-picture">
+                                                <img class="lazy"
+                                                    data-src="{block:ItemImage1}{ItemImage1URL-origin}{/block:ItemImage1}{block:NoItemImage1}{ItemNoImageURL}{/block:NoItemImage1}"
+                                                    alt="{ItemTitle}" draggable="false" width="450" height="450">
+                                            </picture>
+                                        </div>
+                                        {block:ItemImage2}
+                                        <div class="product_swiper_slide swiper-slide">
+                                            <picture class="c-picture">
+                                                <img class="lazy"
+                                                    data-src="{block:ItemImage2}{ItemImage2URL-origin}{/block:ItemImage2}{block:NoItemImage2}{ItemNoImageURL}{/block:NoItemImage2}"
+                                                    alt="{ItemTitle}" draggable="false" width="450" height="450">
+                                            </picture>
+                                        </div>
+                                        {/block:ItemImage2}
+                                        {block:ItemImage3}
+                                        <div class="product_swiper_slide swiper-slide">
+                                            <picture class="c-picture">
+                                                <img class="lazy"
+                                                    data-src="{block:ItemImage3}{ItemImage3URL-origin}{/block:ItemImage3}{block:NoItemImage3}{ItemNoImageURL}{/block:NoItemImage3}"
+                                                    alt="{ItemTitle}" draggable="false" width="450" height="450">
+                                            </picture>
+                                        </div>
+                                        {/block:ItemImage3}
+                                        {block:ItemImage4}
+                                        <div class="product_swiper_slide swiper-slide">
+                                            <picture class="c-picture">
+                                                <img class="lazy"
+                                                    data-src="{block:ItemImage4}{ItemImage4URL-origin}{/block:ItemImage4}{block:NoItemImage4}{ItemNoImageURL}{/block:NoItemImage4}"
+                                                    alt="{ItemTitle}" draggable="false" width="450" height="450">
+                                            </picture>
+                                        </div>
+                                        {/block:ItemImage4}
+                                        {block:ItemImage5}
+                                        <div class="product_swiper_slide swiper-slide">
+                                            <picture class="c-picture">
+                                                <img class="lazy"
+                                                    data-src="{block:ItemImage4}{ItemImage4URL-origin}{/block:ItemImage4}{block:NoItemImage4}{ItemNoImageURL}{/block:NoItemImage4}"
+                                                    alt="{ItemTitle}" draggable="false" width="450" height="450">
+                                            </picture>
+                                        </div>
+                                        {/block:ItemImage5}
+                                    </div>
+                                    <div class="product_swiper_pagination swiper-pagination"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product_detail_r">
+                            <div class="product_header">
+                                <h2>{ItemTitle}</h2>
+                                <p>{ItemPrice}</p>
+                            </div>
+                            <div class="product_meta">
+                                {block:PurchaseForm}
+                                <div hidden>{ItemSelectTag}</div>
+                                {PurchaseButton}
+                                {/block:PurchaseForm}
+                            </div>
+                            <div class="product_info">
+                                <h3>DETAIL</h3>
+                                <div class="product_info_content">
+                                    {ItemDetail}
+                                </div>
+                                <div class="product_info_guide">
+                                    <a href="#">> 送料・配送方法について</a>
+                                    <a href="#">> お支払い方法について</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {block:HasRelatedItems}
+                <div class="product_other">
+                    <h3>OTHER PRODUCTS</h3>
+                    <div class="product_other_list">
+                        {block:RelatedItems}
+                        <div class="product_other_items">
+                            <a href="{RelatedItemPageURL}" class="c-card">
+                                <picture class="c-picture">
+                                    <img class="lazy" data-src="{RelatedItemImageURL-640}" alt="{RelatedItemTitle}"
+                                        draggable="false" width="255" height="255">
+                                </picture>
+                            </a>
+                        </div>
+                        {/block:RelatedItems}
+                    </div>
+                </div>
+                {/block:HasRelatedItems}
+            </div>
+        </section>
+        <!-- //product -->
+    </main>
+    {/block:ItemPage}
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!--                               page about                                -->
+    <!-- ----------------------------------------------------------------------- -->
+    {block:AboutPage}
+    <main class="aboutpage">
+        <!-- about// -->
+        <section class="about">
+            <div class="about_container">
+                <div class="about_inner">
+                    <div class="about_left">
+                        <picture class="c-picture">
+                            <source media="(max-width: 1024px)"
+                                data-srcset="https://basefile.akamaized.net/myagl-base-shop/69329f2d318a7/about_thumb.jpg">
+                            <img class="lazy"
+                                data-src="https://basefile.akamaized.net/myagl-base-shop/69329f2d318a7/about_thumb.jpg"
+                                alt="INFORMATION" draggable="false" width="450" height="450">
+                        </picture>
+                    </div>
+                    <div class="about_right">
+                        <div class="about_content">
+                            <h2 class="c-title">INFORMATION</h2>
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>
+                            <p>
+                                We’re dog friendly🐕<br />
+                                Open everyday 9AM-10PM<br />
+                                Cashless payment only
+                            </p>
+                            <p>&nbsp;</p>
+                            <p>
+                                1-33-7 Kamiuma, SETAGAYA,<br />
+                                TOKYO 1540011 JAPAN<br />
+                                <a href="http://" target="_blank" rel="noopener noreferrer">GOOGLE MAP</a>
+                            </p>
+                            <p>&nbsp;</p>
+                            <p>CONTACT:</p>
+                            <p><a href="mailto:info@samaa.world">info@samaa.world</a></p>
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>
+                            <p>* We do not offer<br class="sp-only" /> international shipping.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- //about -->
+    </main>
+    {/block:AboutPage}
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!--                                page law                                 -->
+    <!-- ----------------------------------------------------------------------- -->
+    {block:LawPage}
+    <main class="guidepage">
+        <!-- guide// -->
+        <section class="guide">
+            <div class="guide_container">
+                <div class="guide_inner c-inner">
+                    <h2 class="c-title">LEGAL DESCRIPTION</h2>
+                    <div class="guide_content">
+                        <dl>
+                            <dt>販売事業者名</dt>
+                            <dd>
+                                <p>株式会社サマサマホールディングス</p>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>販売責任者</dt>
+                            <dd>
+                                <p>村上雄一</p>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>所在地</dt>
+                            <dd>
+                                <p>〒154-0011　東京都世田谷区上馬1-33-7</p>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>連絡先</dt>
+                            <dd>
+                                <p>info@samaa.world</p>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>営業時間</dt>
+                            <dd>
+                                <p>
+                                    お問い合わせ対応時間： 9:00 〜 17:00<br />
+                                    定休日： 不定休
+                                </p>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>販売価格</dt>
+                            <dd>
+                                <p>販売価格は、税込み表記となっております。また、別途配送料が掛かる場合もございます。配送料に関しては商品詳細ページをご確認ください。</p>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>代金の支払方法・時期</dt>
+                            <dd>
+                                <p>支払方法： <br class="sp-only" />クレジットカードによる決済がご利用いただけます。</p>
+                                <p>支払時期： <br class="sp-only" />商品注文確定時にお支払いが確定いたします。</p>
+                                <p>&nbsp;</p>
+                                <p>Pay ID あと払い：</p>
+                                <p>・コンビニ： ご請求後翌月10日のお支払い ／ 支払い手数料： 350円（税込）</p>
+                                <p>・口座振替： ご請求後指定口座より引き落とし ／ 支払い手数料： 無料</p>
+
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>商品のお届け時期</dt>
+                            <dd>
+                                <p>
+                                    代金のお支払い確定後、5日以内に発送いたします。<br class="pc-only" />
+                                    後払い決済の場合は注文確定後、5日以内に発送いたします。
+                                </p>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>返品について</dt>
+                            <dd>
+                                <p>商品に欠陥がある場合をのぞき、基本的には返品には応じません。</p>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- //guide -->
+    </main>
+    {/block:LawPage}
+
+    <!-- ----------------------------------------------------------------------- -->
+    <!--                              page privacy                               -->
+    <!-- ----------------------------------------------------------------------- -->
+    {block:PrivacyPage}
     <main class="policypage">
         <!-- policy// -->
         <section class="policy">
@@ -384,11 +816,12 @@
         </section>
         <!-- //policy -->
     </main>
+    {/block:PrivacyPage}
     <!-- @@main -->
 
     <!-- @footer -->
     <footer class="c-footer">
-        <div class="c-footer_container">
+        <div class="c-footer_container {block:IndexPage}--home{/block:IndexPage}">
             <div class="c-footer_copyright">
                 <p>©︎ SAMAA_</p>
             </div>
@@ -397,8 +830,28 @@
     <!-- @@footer -->
 
     <!-- @script -->
-    <script src="/assets/js/libs.js"></script>
-    <script src="/assets/js/main.js"></script>
+    <script src="https://basefile.akamaized.net/myagl-base-shop/693290d73ba41/libs.js?{UpdateTime}" defer="defer"></script>
+    <script src="https://basefile.akamaized.net/myagl-base-shop/6932a79901e2f/main.js?{UpdateTime}" defer="defer"></script>
 </body>
 
 </html>
+{/block:NotLoadItemsPage}
+
+{block:LoadItemsPage}
+{block:Items}
+<div class="product_items">
+    <a href="{ItemPageURL}" class="c-card">
+        <picture class="c-picture">
+            <img class="lazy"
+                data-src="{block:ItemImage1}{ItemImage1URL-300}{/block:ItemImage1}{block:NoItemImage1}{ItemNoImageURL}{/block:NoItemImage1}"
+                alt="{ItemTitle}" draggable="false" width="350" height="350">
+        </picture>
+        {block:NoItemStock}
+        <div class="product_label">
+            <p>sold out</p>
+        </div>
+        {/block:NoItemStock}
+    </a>
+</div>
+{/block:Items}
+{/block:LoadItemsPage}

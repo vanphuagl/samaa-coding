@@ -5,10 +5,8 @@ const isMobile = window.matchMedia("(max-width: 1024px)");
 const eventsTrigger = ["pageshow", "scroll"];
 const detectScroll = (detect) => {
   if (detect) {
-    lenis.stop();
     document.body.style.overflow = "hidden";
   } else {
-    lenis.start();
     document.body.style.removeProperty("overflow");
   }
 };
@@ -22,22 +20,11 @@ const init = () => {
   // # init product swipers
   initProductSwipers();
   // # lazy load
-  const ll = new LazyLoad({
+  window.lazyLoadInstance = new LazyLoad({
     threshold: 100,
     elements_selector: ".lazy",
   });
 };
-
-// ===== lenis =====
-const lenis = new Lenis({
-  lerp: 0.05,
-  smoothWheel: true,
-});
-const raf = (t) => {
-  lenis.raf(t);
-  requestAnimationFrame(raf);
-};
-requestAnimationFrame(raf);
 
 // ===== app height =====
 const appHeight = () => {
@@ -124,6 +111,12 @@ const initMenu = () => {
       detectScroll(false);
     });
   });
+
+  // # toggle cart
+  // toggleCart.addEventListener("click", function (e) {
+  //   e.preventDefault();
+  //   document.querySelector("#baseMenu .cart > a").click();
+  // });
 };
 
 // ===== products =====

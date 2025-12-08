@@ -102,6 +102,10 @@
         line-height: 1.7;
         text-transform: uppercase;
 
+        span.cart-qty {
+          display: inline !important;
+        }
+
         &.--active:after {
           content: "·";
           position: absolute;

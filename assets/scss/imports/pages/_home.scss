@@ -8,9 +8,18 @@
     &_list {
       width: 72.917vw;
       margin: 0 auto;
+      padding: 0 0 50px;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 200px 0;
+    }
+
+    &_label {
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: 1;
+      text-transform: uppercase;
     }
 
     &_items {
